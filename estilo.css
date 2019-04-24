@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+table#canvas {
+    border: 1px solid #606060;
+    border-spacing: 0px;
+    width: 950pt;
+    margin-left: 5px;
+    width: 99%;
+}
+
+table#canvas td#info{
+    border: 1px solid #606060;
+}
+td#info textarea{
+    text-justify: auto;
+}
+table#canvas p{
+    font-weight: bold;
+    text-align: center;
+}
+textarea#caption{
+    margin-left: 32%;
+}
+button{
+    background-color: white !important;
+    margin-left: 50% !important;
+}
+
+
