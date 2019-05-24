@@ -26,4 +26,22 @@ button{
     margin-left: 50% !important;
 }
 
+td {
+    white-space: normal !important; 
+    word-wrap: break-word;  
+}
+table {
+    width: 100%;
+    margin: auto;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
 
+
+div.grid div  { float: left;}
+div.col100    { width: 205px; }
+div.col200    { width: 205px; }
+div.col300    { width: 205px; }
+div.grey      { background-color: #cccccc; }
+div.red       { background-color: #e14e32; }
+div.clear     { clear: both; }
