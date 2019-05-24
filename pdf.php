@@ -37,7 +37,6 @@ class MYPDF extends TCPDF {
         //write text first
         $startX = $this->GetX();
         $startY = $this->GetY();
-
         foreach ($row as $key => $column):
             $cellcount[] = $this->MultiCell($w[$key],6,$column,0,'C',$fill,0);
         endforeach;
@@ -50,7 +49,21 @@ class MYPDF extends TCPDF {
             $this->MultiCell($w[$key],5.4*$maxnocells,'','LRB','C',$fill,0);
         endforeach;
         
-        $this->Ln();        
+        $this->Ln();     
+    }
+
+    public function caption($header, $w){
+        // Colors, line width and bold font
+        $this->SetFillColor(255, 255, 255);
+        $this->SetTextColor(0,0,0);
+        $this->SetDrawColor(128, 128, 128);
+        $this->SetLineWidth(0.3);
+        $this->SetFont('', 'B');
+        $num_headers = count($header);
+        for($i = 0; $i < $num_headers; ++$i) {
+            $this->Cell($w[$i], 0, $header[$i], 0, 0, 'C', 1);
+        }
+        $this->Ln();
     }
 
     public function Header() {
@@ -132,6 +145,10 @@ $w = array(270);
 $header = array('GAME BUSSINESS');
 $row = array($bussiness);
 $pdf->printTable($header, $row, $w);
+
+$header = array($caption);
+$w = array(270);
+$pdf->caption($header, $w);
 
 // close and output PDF document
 $pdf->Output('Unified_Game_Canvas.pdf', 'I');
