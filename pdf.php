@@ -53,6 +53,7 @@ class MYPDF extends TCPDF {
     }
 
     public function caption($header, $w){
+        $this->Ln();
         // Colors, line width and bold font
         $this->SetFillColor(255, 255, 255);
         $this->SetTextColor(0,0,0);
