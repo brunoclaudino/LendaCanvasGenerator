@@ -12,90 +12,57 @@ $play = $_POST["play"];
 $core = $_POST["core"];
 $interaction = $_POST["interaction"];
 $bussiness = $_POST["bussiness"];
+$caption = $_POST["caption"];
+
 
 class MYPDF extends TCPDF {
-
-    public function printTable($header, $row, $w, $h, $player) {
+    public function printTable($header, $row, $w) {
         // Colors, line width and bold font
         $this->SetFillColor(255, 255, 255);
-        $this->SetFont('helvetica', 'B', 12);
         $this->SetTextColor(0,0,0);
-        $this->SetDrawColor(0, 0, 0);
+        $this->SetDrawColor(128, 128, 128);
         $this->SetLineWidth(0.3);
+        $this->SetFont('', 'B');
         $num_headers = count($header);
         for($i = 0; $i < $num_headers; ++$i) {
-            if($w[$i]==5){
-                $this->Cell($w[$i], 7, $header[$i], 'LR', 0, 'C', 1);
-            }
-            else{
-                if($header[$i] == 'GAME IMPACT'){
-                    $this->Cell($w[$i], 7, $header[$i], 0, 0, 'C', 1);
-                }
-                elseif ($header[$i] == 'GAME BUSSINESS') {
-                    $this->SetY($this->GetY()+5);
-                    $this->Cell($w[$i], 7, $header[$i], 0, 0, 'C', 1);
-                }
-                else{
-                    $this->Cell($w[$i], 7, $header[$i], 'LRT', 0, 'C', 1);
-                }
-            }
+            $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
         }
         $this->Ln();
-        $this->SetLineWidth(0.3);
-        $this->SetFont('helvetica', '', 10);
+        // Color and font restoration
+        $this->SetFillColor(224, 235, 255);
+        $this->SetTextColor(0);
+        $this->SetFont('');
+        $fill = 0;
         $cellcount = array();
-        $i=0;
+
+        //write text first
         $startX = $this->GetX();
         $startY = $this->GetY();
         foreach ($row as $key => $column):
-            if($header[$i] == 'GAME CONCEPT'){
-                $cellcount[] = $this->MultiCell($w[$key],6,$column,0,'C',0,0, '', '', true, 0, false, true, $h[0], 'T', true);
-                $i=1;
-            }
-            elseif($header[$i] == 'GAME IMPACT' || $header[$i] == 'GAME BUSSINESS'){
-                $cellcount[] = $this->MultiCell($w[$key],6,$column,0,'C',0,0, '', '', true, 0, false, true, $h[2], 'T', true);
-            }
-            else{
-                $cellcount[] = $this->MultiCell($w[$key],6,$column,0,'C',0,0, '', '', true, 0, false, true, $h[1], 'T', true);
-            }
+            $cellcount[] = $this->MultiCell($w[$key],6,$column,0,'C',$fill,0);
         endforeach;
+     
         $this->SetXY($startX,$startY);
-
-        $i = 0; 
+         
+        $maxnocells = max($cellcount);
+         
         foreach ($row as $key => $column):
-            if($w[$key]==5){
-                $this->MultiCell($w[$key], $h[1], '', 0, 'C', 0, 0);
-            }
-            else{
-                if($header[$i] == 'GAME CONCEPT'){
-                    $i = 1;
-                    $startX = $this->GetX();
-                    $startY = $this->GetY();
-                    $this->MultiCell($w[$key], $h[0],'','LRB','C', 0, 1, '', '', true, 0, false, true, $h[0], 'T', true);
-                    $this->SetFont('helvetica', 'B', 12);
-                    $this->MultiCell($w[$key], 7,'GAME PLAYER','LTR','C', 0, 1);
-                    $this->SetFont('helvetica', '', 10);
-                    $this->MultiCell($w[$key], $h[0], $player,'LRB','C', 0, 0, '', '', true, 0, false, true, $h[0], 'T', true);
-                    $this->SetXY($startX + 50, $startY);
-                }
-                elseif($header[0] == 'GAME IMPACT'){
-                    $this->MultiCell($w[$key], $h[2],'', 0,'C', 0, 0, '', '', true, 0, false, true, $h[2], 'T', true);   
-                }
-                elseif ($header[0] == 'GAME BUSSINESS') {
-                    $this->MultiCell($w[$key], $h[2],'', 0, 'C', 0, 0, '', '', true, 0, false, true, $h[2], 'T', true);
-                }
-                else{
-                    $this->MultiCell($w[$key], $h[1], '', 'LRB', 'C', 0, 0, '', '', true, 0, false, true, $h[1], 'T', true);
-                }
-            }
+            $this->MultiCell($w[$key],5.4*$maxnocells,'','LRB','C',$fill,0);
         endforeach;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 4b7ce6b... agora o pdf tá shows (e parece realmente o UGD)
         
         $this->Ln();     
     }
 
     public function caption($header, $w){
+<<<<<<< HEAD
+=======
+        $this->Ln();
+>>>>>>> parent of 4b7ce6b... agora o pdf tá shows (e parece realmente o UGD)
         // Colors, line width and bold font
         $this->SetFillColor(255, 255, 255);
         $this->SetTextColor(0,0,0);
@@ -106,16 +73,35 @@ class MYPDF extends TCPDF {
         for($i = 0; $i < $num_headers; ++$i) {
             $this->Cell($w[$i], 0, $header[$i], 0, 0, 'C', 1);
         }
+<<<<<<< HEAD
 >>>>>>> parent of 72fcd4d... -
+=======
+>>>>>>> parent of 4b7ce6b... agora o pdf tá shows (e parece realmente o UGD)
         $this->Ln();
     }
 
     public function Header() {
-       $this->SetLineStyle( array( 'width' => 0.40, 'color' => array(0, 0, 0)));
-       $this->Line(5, 5, $this->getPageWidth()-5, 5); 
-       $this->Line($this->getPageWidth()-5, 5, $this->getPageWidth()-5,  $this->getPageHeight()-5);
-       $this->Line(5, $this->getPageHeight()-5, $this->getPageWidth()-5, $this->getPageHeight()-5);
-       $this->Line(5, 5, 5, $this->getPageHeight()-5);
+        // Title
+        if($this->getPage()!=1){
+            $this->SetDrawColor(128, 128, 128);
+            $this->SetLineWidth(0.3);
+            $this->Ln();
+            $this->Cell(270, 0, '', 'B', false, 'C', 0, '', 0, false, 'M', 'M');
+        }
+    }
+
+    // Page footer
+    public function Footer() {
+        $this->SetDrawColor(128, 128, 128);
+        $this->SetLineWidth(0.3);
+        // Position at 15 mm from bottom
+        $this->SetY(-15);
+        // Set font
+        $this->SetFont('helvetica', 'I', 8);
+        // Page number
+        $this->Cell(270, 0, '', 'T', false, 'C', 0, '', 0, false, 'T', 'M');
+        $this->Ln();
+        $this->Cell(270, 0, 'Página '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
     }
 }
 
@@ -129,16 +115,18 @@ $pdf->SetTitle('Unified Game Canvas');
 $pdf->SetSubject('Unified Game Canvas');
 $pdf->SetKeywords('Unified, Game, PDF, Canvas');
 
+// set footer fonts
+$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
 // set default monospaced font
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // set margins
-$pdf->SetMargins(13.5, 9, 13.5);
-$pdf->SetFooterMargin(0);
+$pdf->SetMargins(PDF_MARGIN_LEFT, 8, PDF_MARGIN_RIGHT);
+$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
 // set auto page breaks
-$pdf->SetAutoPageBreak(FALSE, 10);
-$pdf->SetPrintFooter(false);
+$pdf->SetAutoPageBreak(TRUE, 15);
 //$pdf->SetPrintHeader(false);
 
 // ---------------------------------------------------------
@@ -149,25 +137,17 @@ $pdf->SetFont('helvetica', '', 12);
 // add a page
 $pdf->AddPage('L', 'A4');
 
-$h = array(66.5, 140, 12);
-
 // print table 1
 $w = array(270);
 $header = array('GAME IMPACT');
 $row = array($impact);
-$pdf->printTable($header, $row, $w, $h, '');
+$pdf->printTable($header, $row, $w);
 
 // print table 2
-$style5 = array('width' => 0.3, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
-$w = array(50, 5, 50, 5, 50, 5, 50, 5, 50, 5);
-$header = array('GAME CONCEPT', '', 'GAME PLAY','', 'GAME FLOW','', 'GAME CORE','', 'GAME INTERACTION');
-$space = array($pdf->Polygon(array(63.5,96,68.2,101,63.5,106), 'DF', array('all' => $style5), array(0, 0, 0), true),
-$pdf->Polygon(array(118.6,96.5,123.2,101,118.6,106.5), 'DF', array('all' => $style5), array(0, 0, 0), true),
-$pdf->Polygon(array(173.7,96.5,178.2,101,173.7,106.5), 'DF', array('all' => $style5), array(0, 0, 0), true),
-$pdf->Polygon(array(228.8,96.5,233.2,101,228.8,106.5), 'DF', array('all' => $style5), array(0, 0, 0), true),
-$pdf->Polygon(array(283.7,96.5,288.2,101.5,283.7,106.5), 'DF', array('all' => $style5), array(0, 0, 0), true));
-$row = array($concept, $space[0], $play, $space[1], $flow, $space[2], $core, $space[3], $interaction, $space[4]);
-$pdf->printTable($header, $row, $w, $h, $player);
+$w = array(45, 45, 45, 45, 45, 45);
+$header = array('GAME CONCEPT', 'GAME PLAYER', 'GAME FLOW', 'GAME PLAY', 'GAME CORE', 'GAME INTERACTION');
+$row = array($concept,$player,$flow,$play,$core,$interaction);
+$pdf->printTable($header, $row, $w);
 
 // print table 3
 $numPages = $pdf->getNumPages();
@@ -178,9 +158,11 @@ if($pdf->getPage()>1){
 $w = array(270);
 $header = array('GAME BUSSINESS');
 $row = array($bussiness);
-$pdf->printTable($header, $row, $w, $h, '');
-$pdf->Line(5, 101.53, 13.5, 101.53, $style5);
-$pdf->Line(283.4, 101.53, 291.9, 101.53, $style5);
+$pdf->printTable($header, $row, $w);
+
+$header = array($caption);
+$w = array(270);
+$pdf->caption($header, $w);
 
 // close and output PDF document
 $pdf->Output('Unified_Game_Canvas.pdf', 'I');
