@@ -89,6 +89,24 @@ class MYPDF extends TCPDF {
                 }
             }
         endforeach;
+<<<<<<< HEAD
+=======
+        
+        $this->Ln();     
+    }
+
+    public function caption($header, $w){
+        // Colors, line width and bold font
+        $this->SetFillColor(255, 255, 255);
+        $this->SetTextColor(0,0,0);
+        $this->SetDrawColor(128, 128, 128);
+        $this->SetLineWidth(0.3);
+        $this->SetFont('', 'B');
+        $num_headers = count($header);
+        for($i = 0; $i < $num_headers; ++$i) {
+            $this->Cell($w[$i], 0, $header[$i], 0, 0, 'C', 1);
+        }
+>>>>>>> parent of 72fcd4d... -
         $this->Ln();
     }
 
