@@ -60,9 +60,12 @@ class MYPDF extends TCPDF {
 
     public function caption($header, $w){
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         $this->Ln();
 >>>>>>> parent of 4b7ce6b... agora o pdf tá shows (e parece realmente o UGD)
+=======
+>>>>>>> parent of 72fcd4d... -
         // Colors, line width and bold font
         $this->SetFillColor(255, 255, 255);
         $this->SetTextColor(0,0,0);
