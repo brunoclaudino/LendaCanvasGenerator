@@ -6,6 +6,7 @@
     <title>Canvas Generator</title>
     <link rel="stylesheet" type="text/css" href="{{asset('css/estilo.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ secure_asset('css/AdminLTE.min.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script type="text/javascript" src="{{asset('js/bootstrap/jquery-3.4.0.min.js.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bootstrap/bootstrap.min.js')}}"></script>
