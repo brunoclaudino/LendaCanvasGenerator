@@ -335,7 +335,7 @@
                 </label>
             </div>
             <div id="button">  
-                <button type="submit" class="btn btn-outline-success">Success</button>
+                <button type="submit" class="btn btn-outline-success">Generate</button>
             </div>
         </form>
     </div>
