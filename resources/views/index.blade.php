@@ -15,7 +15,7 @@
     <nav class="navbar navbar-light bg-light" id="cabecalho">
         <a class="navbar-brand" href="#">
           <img src="{{asset('images/logo.jpg')}}" width="60" height="60" class="d-inline-block align-top" alt="">
-          Unified Game Canvas (UGD) Generator
+          Unified Game Canvas (UGC) Generator
         </a>
     </nav>
     <div>
@@ -198,9 +198,9 @@
                                 </label></p>
                             <p><label style="width: 98%;">
                                     @if(isset($data))
-                                        <textarea name="flow2" cols="25" rows="2" style="resize: none;" placeholder="Time, Ramdomness, AI">{{$data["flow2"]}}</textarea>
+                                        <textarea name="flow2" cols="25" rows="2" style="resize: none;" placeholder="Time, Randomness, AI">{{$data["flow2"]}}</textarea>
                                     @else
-                                        <textarea name="flow2" cols="25" rows="2" style="resize: none;" placeholder="Time, Ramdomness, AI"></textarea>
+                                        <textarea name="flow2" cols="25" rows="2" style="resize: none;" placeholder="Time, Randomness, AI"></textarea>
                                     @endif
                                 </label></p>
                             <p><label style="width: 98%;">
